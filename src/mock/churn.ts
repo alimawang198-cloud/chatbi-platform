@@ -1,0 +1,36 @@
+export const churnData = {
+  byReason: [
+    { name: '价格因素', value: 35, color: '#ef4444' },
+    { name: '产品不匹配', value: 28, color: '#f59e0b' },
+    { name: '竞品替代', value: 18, color: '#3b82f6' },
+    { name: '使用频次低', value: 12, color: '#8b5cf6' },
+    { name: '服务体验', value: 7, color: '#10b981' },
+  ],
+  byTier: [
+    { name: '基础版', value: 5.8, color: '#ef4444' },
+    { name: '中端版', value: 3.5, color: '#f59e0b' },
+    { name: '专业版', value: 2.4, color: '#3b82f6' },
+    { name: '企业版', value: 1.2, color: '#10b981' },
+  ],
+  monthlyTrend: [
+    { month: '2025-08', rate: 4.5 },
+    { month: '2025-09', rate: 4.3 },
+    { month: '2025-10', rate: 4.1 },
+    { month: '2025-11', rate: 4.0 },
+    { month: '2025-12', rate: 3.8 },
+    { month: '2026-01', rate: 3.9 },
+    { month: '2026-02', rate: 3.7 },
+    { month: '2026-03', rate: 3.5 },
+    { month: '2026-04', rate: 3.4 },
+    { month: '2026-05', rate: 3.6 },
+    { month: '2026-06', rate: 3.7 },
+    { month: '2026-07', rate: 3.2 },
+  ],
+  byChannel: [
+    { name: '直接访问', rate: 4.2 },
+    { name: '付费搜索', rate: 3.8 },
+    { name: '社交媒体', rate: 3.1 },
+    { name: '推荐渠道', rate: 2.4 },
+    { name: '自然流量', rate: 1.9 },
+  ],
+};
