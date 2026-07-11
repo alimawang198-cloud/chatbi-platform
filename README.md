@@ -1,32 +1,13 @@
-# React + TypeScript + Vite
+# ChatBI
+自然语言驱动的智能BI数据分析前端项目，基于 Next.js 构建，支持对话式查询数据库并自动生成可视化图表，已完成线上HTTPS部署。
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## 访问地址
+线上正式域名：https://chatbi.openclawhome.site
 
-Currently, two official plugins are available:
+## 本地开发
+```bash
+# 安装依赖
+npm install
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+# 本地启动服务
+npm run dev
