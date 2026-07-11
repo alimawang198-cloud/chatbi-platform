@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AlertTriangle, ArrowRight } from 'lucide-react';
 import { useDashboardStore } from '../../store/dashboardStore';
 import { useAuthStore } from '../../store/authStore';
 import { roleMeta } from '../../utils/constants';
 import { KpiGrid } from '../../components/dashboard/KpiGrid';
+import { AIAnalysisDrawer } from '../../components/dashboard/AIAnalysisDrawer';
 import { TimeRangeSelector } from '../../components/dashboard/TimeRangeSelector';
 import { ChartContainer } from '../../components/charts/ChartContainer';
 import { LineChart } from '../../components/charts/LineChart';
@@ -16,11 +17,13 @@ import { Skeleton } from '../../components/common/Skeleton';
 import { Button } from '../../components/common/Button';
 import { revenueByChannel, revenueByRegion, revenueByTier } from '../../mock/revenue';
 import { trendData } from '../../mock/trends';
+import type { KpiCardData } from '../../types';
 
 export function DashboardPage() {
   const navigate = useNavigate();
   const { timeRange, setTimeRange, kpiData: kpis, isLoading, fetchDashboard } = useDashboardStore();
   const activeRole = useAuthStore(s => s.activeRole);
+  const [aiKpi, setAiKpi] = useState<KpiCardData | null>(null);
 
   useEffect(() => {
     fetchDashboard(activeRole);
@@ -78,7 +81,7 @@ export function DashboardPage() {
       </Card>
 
       {/* KPI Grid */}
-      <KpiGrid data={kpis} />
+      <KpiGrid data={kpis} onAIAnalysis={setAiKpi} />
 
       {/* Main charts: Trends (2/3) + Radar/Summary (1/3) */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
@@ -142,6 +145,13 @@ export function DashboardPage() {
           />
         </ChartContainer>
       </div>
+
+      {/* AI Analysis Drawer */}
+      <AIAnalysisDrawer
+        open={!!aiKpi}
+        onClose={() => setAiKpi(null)}
+        kpi={aiKpi}
+      />
     </div>
   );
 }

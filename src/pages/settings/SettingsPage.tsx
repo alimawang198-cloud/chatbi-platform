@@ -229,11 +229,11 @@ export function SettingsPage() {
             <p className="text-xs font-semibold text-slate-500 mb-2.5 uppercase tracking-wide">Demo 账号</p>
             <div className="space-y-2">
               {[
-                { name: '张总 / demo123', role: '副总裁视角 — 全局经营数据', color: 'border-l-indigo-500' },
-                { name: '王产品 / demo123', role: '产品经理视角 — 产品与用户指标', color: 'border-l-purple-500' },
-                { name: '王分析 / demo123', role: '分析师视角 — 深度数据探索', color: 'border-l-emerald-500' },
+                { name: '张总 / demo123', role: '副总裁视角 — 全局经营数据' },
+                { name: '王产品 / demo123', role: '产品经理视角 — 产品与用户指标' },
+                { name: '王分析 / demo123', role: '分析师视角 — 深度数据探索' },
               ].map((a, i) => (
-                <div key={i} className={`text-sm bg-slate-50 rounded-lg px-4 py-2.5 border-l-2 ${a.color}`}>
+                <div key={i} className="text-sm bg-slate-50 rounded-lg px-4 py-2.5">
                   <span className="font-medium text-gray-700">{a.name}</span>
                   <span className="text-xs text-slate-400 ml-2">{a.role}</span>
                 </div>

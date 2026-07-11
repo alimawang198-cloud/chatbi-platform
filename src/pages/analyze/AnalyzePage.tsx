@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { BarChart3, TrendingUp, TrendingDown, Filter, ChevronDown } from 'lucide-react';
 import { useDrillStore } from '../../store/drillStore';
 import { DrillPanel } from '../../components/drill/DrillPanel';
@@ -12,9 +12,31 @@ import { churnData } from '../../mock/churn';
 import { trendData } from '../../mock/trends';
 import { kpiData } from '../../mock/metrics';
 
+const ALL_MONTHS = ['2025-08', '2025-09', '2025-10', '2025-11', '2025-12', '2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07'];
+
+function filterByRange<T>(data: T[], range: string): T[] {
+  switch (range) {
+    case '近6月': return data.slice(-6);
+    case '上月': return data.slice(-2);
+    case '本月': return data.slice(-2);
+    default: return data;
+  }
+}
+
 export function AnalyzePage() {
   const { togglePanel, isOpen, drillDown, setDimension } = useDrillStore();
   const [activeFilter, setActiveFilter] = useState('全部');
+
+  const filteredTrendData = useMemo(() => {
+    return trendData.map(s => ({
+      ...s,
+      data: filterByRange(s.data, activeFilter),
+    }));
+  }, [activeFilter]);
+
+  const filteredLabels = useMemo(() => {
+    return filterByRange(ALL_MONTHS, activeFilter);
+  }, [activeFilter]);
 
   const handleRegionClick = (label: string) => {
     if (!isOpen) togglePanel();
@@ -89,8 +111,8 @@ export function AnalyzePage() {
               <ChartContainer title="核心指标趋势" subtitle="近12个月 MRR / MAU / 流失率 变化">
                 <LineChart
                   data={{
-                    labels: trendData[0].data.map(d => d.date),
-                    series: trendData.slice(0, 3).map(s => ({
+                    labels: filteredLabels,
+                    series: filteredTrendData.slice(0, 3).map(s => ({
                       name: s.name,
                       data: s.name.includes('%') ? s.data.map(d => d.value) : s.data.map(d => Math.round(d.value)),
                       color: s.color,

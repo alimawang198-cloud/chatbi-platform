@@ -74,15 +74,15 @@ export function buildLineOptions(data: ChartData, title?: string) {
       left: 'center',
     } : undefined,
     tooltip: baseTooltip(),
-    legend: {
+    legend: data.series.length > 1 ? {
       data: data.series.map(s => s.name),
       bottom: 0,
       icon: 'roundRect' as const,
       itemWidth: 8,
       itemHeight: 8,
       textStyle: { color: textColor, fontSize: 11, fontFamily },
-    },
-    grid: baseGrid(),
+    } : undefined,
+    grid: { top: 16, right: 16, bottom: 24, left: 16, containLabel: true },
     xAxis: {
       type: 'category' as const,
       data: data.labels,
@@ -167,15 +167,15 @@ export function buildBarOptions(data: ChartData, horizontal: boolean = false, ti
         left: 'center',
       } : undefined,
       tooltip: { ...baseTooltip(), trigger: 'axis' as const },
-      legend: {
+      legend: data.series.length > 1 ? {
         data: data.series.map(s => s.name),
         bottom: 0,
         icon: 'roundRect' as const,
         itemWidth: 8,
         itemHeight: 8,
         textStyle: { color: textColor, fontSize: 11, fontFamily },
-      },
-      grid: { top: 16, right: 30, bottom: 40, left: 16, containLabel: true },
+      } : undefined,
+      grid: { top: 16, right: 30, bottom: 24, left: 16, containLabel: true },
       xAxis: {
         type: 'value' as const,
         splitLine: { lineStyle: { color: gridColor, type: 'dashed' as const } },
@@ -201,15 +201,15 @@ export function buildBarOptions(data: ChartData, horizontal: boolean = false, ti
       left: 'center',
     } : undefined,
     tooltip: baseTooltip(),
-    legend: {
+    legend: data.series.length > 1 ? {
       data: data.series.map(s => s.name),
       bottom: 0,
       icon: 'roundRect' as const,
       itemWidth: 8,
       itemHeight: 8,
       textStyle: { color: textColor, fontSize: 11, fontFamily },
-    },
-    grid: baseGrid(),
+    } : undefined,
+    grid: { top: 16, right: 16, bottom: 24, left: 16, containLabel: true },
     xAxis: {
       type: 'category' as const,
       data: data.labels,

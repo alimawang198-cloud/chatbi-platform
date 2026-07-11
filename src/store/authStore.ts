@@ -16,9 +16,9 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>((set) => {
   const savedUser = localStorage.getItem('chatbi_user');
-  const savedRole = localStorage.getItem('chatbi_active_role') as Role | null;
   const initialUser = savedUser ? JSON.parse(savedUser) : null;
-  const initialRole = savedRole && ['manager', 'pm', 'analyst'].includes(savedRole) ? savedRole : (initialUser?.role || 'manager');
+  const savedRole = localStorage.getItem('chatbi_active_role') as Role | null;
+  const initialRole = initialUser?.role || (savedRole && ['manager', 'pm', 'analyst'].includes(savedRole) ? savedRole : 'manager');
 
   return {
     user: initialUser,

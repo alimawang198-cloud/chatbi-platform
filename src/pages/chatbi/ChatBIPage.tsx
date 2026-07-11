@@ -10,6 +10,11 @@ export function ChatBIPage() {
   const { messages, suggestions, isProcessing, currentPhase, sendQuery, handleClarification, handleFeedback, clearHistory } = useChatStore();
   const [reportOpen, setReportOpen] = useState(false);
 
+  const handleSuggestionClick = (text: string) => {
+    clearHistory();
+    sendQuery(text);
+  };
+
   const phaseLabels: Record<string, string> = {
     followup_detection: '检测追问上下文...',
     intent_classification: '识别查询意图...',
@@ -56,15 +61,15 @@ export function ChatBIPage() {
       />
 
       {/* Input area */}
-      <div className="p-5 bg-white border-t border-slate-200 shrink-0">
+      <div className="px-8 pt-5 pb-12 bg-white border-t border-slate-200 shrink-0">
         <div className="max-w-3xl mx-auto">
           {messages.length > 0 && (
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center justify-between mb-4">
               <div className="flex gap-2 overflow-x-auto pb-1">
                 {suggestions.slice(0, 5).map((s, i) => (
                   <button
                     key={i}
-                    onClick={() => sendQuery(s)}
+                    onClick={() => handleSuggestionClick(s)}
                     className="px-3 py-1.5 rounded-lg text-xs bg-slate-50 border border-slate-200 text-slate-500 hover:border-indigo-300 hover:text-indigo-600 transition-colors cursor-pointer whitespace-nowrap shrink-0"
                   >
                     {s}
@@ -76,7 +81,7 @@ export function ChatBIPage() {
                 className="text-slate-300 hover:text-slate-500 cursor-pointer shrink-0 ml-3 transition-colors"
                 title="清空对话"
               >
-                <Trash2 className="w-3.5 h-3.5" />
+                <Trash2 className="w-4 h-4" />
               </button>
             </div>
           )}

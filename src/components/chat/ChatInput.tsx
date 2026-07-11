@@ -33,21 +33,21 @@ export function ChatInput({ onSend, loading }: ChatInputProps) {
   };
 
   return (
-    <div className="flex items-end gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3.5 shadow-sm focus-within:border-indigo-300 focus-within:ring-2 focus-within:ring-indigo-100 transition-all">
+    <div className="flex items-end gap-3 bg-white border border-slate-200 rounded-xl px-5 py-4 shadow-sm focus-within:border-indigo-300 focus-within:ring-2 focus-within:ring-indigo-100 transition-all">
       <textarea
         ref={textareaRef}
         value={input}
         onChange={e => setInput(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="输入您的问题，例如：这个月收入怎么样？..."
-        rows={1}
-        className="flex-1 resize-none text-sm outline-none text-gray-700 placeholder-slate-400 max-h-[120px]"
+        rows={2}
+        className="flex-1 resize-none text-[15px] outline-none text-gray-700 placeholder-slate-400 max-h-[120px]"
       />
       <button
         onClick={handleSend}
         disabled={!input.trim() || loading}
         className={cn(
-          'p-2 rounded-lg transition-all shrink-0 cursor-pointer',
+          'p-2.5 rounded-lg transition-all shrink-0 cursor-pointer',
           input.trim() && !loading
             ? 'bg-indigo-500 text-white hover:bg-indigo-600'
             : 'bg-slate-100 text-slate-400'

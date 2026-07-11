@@ -41,14 +41,14 @@ export function Sidebar() {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-6 py-10 space-y-8 overflow-y-auto">
+      <nav className="flex-1 px-6 py-10 space-y-14 overflow-y-auto">
         {navItems.map(item => (
           <NavLink
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
               cn(
-                'flex items-center gap-5 px-5 py-4 rounded-xl text-[15px] font-medium transition-all duration-200',
+                'flex items-center gap-5 px-5 py-6 rounded-xl text-[15px] font-medium transition-all duration-200',
                 isActive
                   ? 'bg-indigo-500/20 text-indigo-300'
                   : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'

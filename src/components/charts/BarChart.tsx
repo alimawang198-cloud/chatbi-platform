@@ -46,7 +46,7 @@ function VerticalBarChart({ data, title, height, onBarClick }: { data: ChartData
   const truncate = (s: string, max = 5) => s.length > max ? s.slice(0, max) + '…' : s;
 
   return (
-    <div className="w-full select-none" style={{ height }}>
+    <div className="w-full select-none overflow-hidden" style={{ height }}>
       <div className="flex flex-col h-full">
         {/* Legend */}
         {series.length > 1 && (
@@ -167,7 +167,7 @@ function HorizontalBarChart({ data, title, height, onBarClick }: { data: ChartDa
   const barH = Math.max(24, Math.min(40, (height - 50) / labels.length - 6));
 
   return (
-    <div className="w-full select-none" style={{ height }}>
+    <div className="w-full select-none overflow-hidden" style={{ height }}>
       <div className="flex flex-col h-full justify-center gap-[6px]">
         {labels.map((label, i) => {
           const val = s.data[i] ?? 0;

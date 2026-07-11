@@ -23,7 +23,7 @@ export function Header() {
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="flex bg-gray-100 rounded-lg p-0.5 gap-0.5">
+        <div className="flex bg-gray-100 rounded-lg p-0.5 gap-1.5">
           {roles.map(role => (
             <button
               key={role}

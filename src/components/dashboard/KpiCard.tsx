@@ -1,13 +1,14 @@
-import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { TrendingUp, TrendingDown, Minus, Sparkles } from 'lucide-react';
 import type { KpiCardData } from '../../types';
 import { Card } from '../common/Card';
 import { formatCurrency, formatNumber, formatChange } from '../../utils/format';
 
 interface KpiCardProps {
   data: KpiCardData;
+  onAIAnalysis?: (kpi: KpiCardData) => void;
 }
 
-export function KpiCard({ data }: KpiCardProps) {
+export function KpiCard({ data, onAIAnalysis }: KpiCardProps) {
   const formatValue = (v: number) => {
     if (data.prefix === '¥') return formatCurrency(v);
     if (data.suffix === '%') return v.toFixed(1);
@@ -56,6 +57,15 @@ export function KpiCard({ data }: KpiCardProps) {
           );
         })}
       </div>
+
+      {/* AI Analysis button */}
+      <button
+        onClick={(e) => { e.stopPropagation(); onAIAnalysis?.(data); }}
+        className="mt-3 w-full flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-medium text-indigo-500 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 transition-colors cursor-pointer"
+      >
+        <Sparkles className="w-3 h-3" />
+        AI 分析
+      </button>
     </Card>
   );
 }
